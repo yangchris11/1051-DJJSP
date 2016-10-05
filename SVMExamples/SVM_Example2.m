@@ -1,30 +1,44 @@
 % SVM Example 2 for LIBSVM 
 
-% ¿é¤J LIBSVM (Matlab version) ©Ò¦bªº¸ê®Æ§¨
-addpath('C:\Users\MD531\Documents\Machine Learning\libsvm-3.18');
+% è¼¸å…¥ LIBSVM (Matlab version) æ‰€åœ¨çš„è³‡æ–™å¤¾
+addpath('Z:\Desktop\1051-DJJSP/libsvm-3.21');
 
 % training data and labels
 features_a=[ 25.031, 25.143, 24.996, 24.997, 25.066, 25.093, 24.999, 25.037, 25.277, 25.192, 25.038, 25.125, 25.117, 24.943, 25.027, 24.996;
             121.503,121.439,121.517,121.545,121.586,121.533,121.643,121.451,121.569,121.545,121.564,121.493,121.639,121.540,121.525,121.463]';
-% first column: the first feature  (¥_½n«×)
-% second column: the second feature (ªF¸g«×)
+% first column: the first feature  (ç·¯åº¦)
+% second column: the second feature (ç¶“åº¦)
 label_a = [1,2,2,1,1,1,2,2,2,1,1,1,2,2,1,2]';
-% 1: ¥x¥_¥«, 2: ·s¥_¥«
+% 1: å°åŒ—å¸‚, 2: æ–°åŒ—å¸‚
 
 % test data and labels
 features_b=[ 25.046, 24.995, 25.176, 25.068, 25.111;
             121.518,121.485,121.436,121.654,121.560]';
 label_b = [1,2,2,2,1]';
+
+feature_c = [ 25.000 ; 121.000]';
+label_c = [1]';
+
+
+
 % scaling
-[m,N]=size(features_a);
-[m1,N]=size(features_b);
+[m,N] = size(features_a) ;
+[m1,N] = size(features_b) ;
+[m2,N] = size(features_c) ;
+
 mf=mean(features_a);
+
 nrm=diag(1./std(features_a,1));
+
 features_1=(features_a-ones(m,1)*mf)*nrm;
 features_2=(features_b-ones(m1,1)*mf)*nrm;
+feature_3 = (feature_c - ones( m2 , 1 ) * mf ) * nrm ;
+
 % SVM
 model = svmtrain(label_a, features_1,'-c 1 -g 0.07');
+
 % test
-[predicted, accuracy, d_values] = svmpredict(label_b, features_2, model);
+[predicted, accuracy, d_values] = svmpredict(label_c, features_3, model);
+
 % predicted: the SVM output of the test data
 

@@ -1,6 +1,6 @@
 # This Makefile is used under Linux
 
-MATLABDIR ?= /usr/local/matlab
+MATLABDIR ?= /Users/yangchris11/desktop/1042/1042-SS/MATLAB/bin/matlabb
 # for Mac
 # MATLABDIR ?= /opt/local/matlab
 
